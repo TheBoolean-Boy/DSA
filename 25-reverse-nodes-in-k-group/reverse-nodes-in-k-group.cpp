@@ -29,6 +29,7 @@ public:
         while(temp != nullptr){
             temp = temp->next;
             count++;
+            if(count ==k )break;
             
         }
         
