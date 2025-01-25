@@ -49,6 +49,8 @@ public:
         return count;
     }
     int reversePairs(vector<int>& nums) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
         return mergeSort(nums,0, nums.size()-1);
     }
 };
