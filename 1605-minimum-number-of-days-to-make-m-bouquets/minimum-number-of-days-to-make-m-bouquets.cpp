@@ -16,6 +16,9 @@ public:
         return false;
     }
     int minDays(vector<int>& bloomDay, int m, int k) {
+         ios_base::sync_with_stdio(false);
+         cin.tie(NULL);
+
         if(bloomDay.size() < ((long long)m *(long long)k))return -1;
         int low = *min_element(bloomDay.begin(), bloomDay.end());
         int high = *max_element(bloomDay.begin(), bloomDay.end());
