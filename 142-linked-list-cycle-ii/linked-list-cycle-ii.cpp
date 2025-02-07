@@ -9,22 +9,22 @@
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
-        if(head == nullptr || head->next == nullptr)return NULL;
+        if(head == nullptr || head -> next == nullptr)return nullptr;
+
         ListNode* fast = head;
         ListNode* slow = head;
         while(fast != nullptr && fast->next != nullptr){
             slow = slow->next;
-            fast = fast->next->next;
-            if(slow == fast){
+            fast = fast -> next ->next;
+            if(fast == slow){
                 slow = head;
-                while(fast != slow){
-                    slow = slow->next;
-                    fast = fast->next;
+                while(slow != fast){
+                    fast = fast -> next;
+                    slow = slow -> next;
                 }
-                return fast;
+                return slow;
             }
         }
-        
         return nullptr;
     }
 };
