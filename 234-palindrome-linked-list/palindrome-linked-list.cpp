@@ -10,36 +10,39 @@
  */
 class Solution {
 public:
-    ListNode* reverse(ListNode* head){
-        ListNode* prev = nullptr;
-        ListNode* temp = head;
-        while(temp!=nullptr){
-            ListNode* front = temp->next;
-            temp->next = prev;
-            prev = temp;
-            temp = front;
-        }
-        return prev;
+ListNode* reverseList(ListNode* head){
+    if(head == nullptr || head -> next == nullptr)return head;
+    ListNode* prev = nullptr;
+    ListNode* temp = head;
+    while(temp != nullptr){
+        ListNode* front = temp->next;
+        temp->next = prev;
+        prev = temp;
+        temp = front;
     }
+    return prev;
+}
     bool isPalindrome(ListNode* head) {
-        if(head == nullptr )return false;
-        if(head->next == nullptr)return true;
-       ListNode* slow = head;
-       ListNode* fast = head;
-       while( fast->next != nullptr  && fast->next->next != nullptr){
-        slow = slow->next;
-        fast= fast->next->next;
-       } 
-       ListNode* newHead = reverse(slow->next);
-       ListNode* temp = head;
-       while(temp != nullptr && newHead != nullptr){
-        if(newHead->val != temp->val){
-            return false;
+        if(head == nullptr)return false;
+        if(head -> next == nullptr)return true;
+
+        ListNode* fast = head->next->next;
+        ListNode* slow  = head;
+        while(fast != nullptr && fast->next != nullptr){
+            slow = slow -> next;
+            fast = fast -> next -> next;
         }
-        newHead = newHead->next;
-        temp = temp->next;
-       }
-       newHead = reverse(newHead);
-       return true;
+
+        ListNode* secondaryHead = reverseList(slow -> next);
+        ListNode* temp = head;
+        while(secondaryHead != nullptr && temp != nullptr){
+            if(secondaryHead -> val != temp -> val){
+                return false;
+            }
+            secondaryHead = secondaryHead->next;
+            temp = temp -> next;
+        }
+        secondaryHead = reverseList(secondaryHead);
+        return true;
     }
 };
