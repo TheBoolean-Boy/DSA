@@ -1,18 +1,25 @@
 class Solution {
 public:
-    int numberOfSubstrings(string s) {
-        vector<int> lastSeen(3, -1);
-        int count = 0;
-
-        for (int i = 0; i < s.size(); i++) {
-            lastSeen[s[i] - 'a'] = i;
-            if (lastSeen[0] != -1 && lastSeen[1] != -1 && lastSeen[2] != -1) {
-                count += 1 + min({lastSeen[0], lastSeen[1], lastSeen[2]});
+    static int numberOfSubstrings(string& s) {
+        const int n=s.size();
+        int cnt=0, letter=0, freq[3]={0};
+        for(int l=0, r=0; r<n; r++){
+            const int c=s[r]-'a';
+            if (++freq[c]==1) letter++;
+            while( letter==3 ){
+                if (--freq[s[l]-'a']==0) letter--;
+                l++;
             }
+            cnt+=l;
         }
-        return count;
+        return cnt;
     }
 };
 
 
-        
+auto init = []() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    return 'c';
+}();
