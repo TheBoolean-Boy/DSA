@@ -1,21 +1,20 @@
 class Solution {
 public:
     void sortColors(vector<int>& nums) {
-        //Dutch national flag problem (red, white, blue)
-        const char red=0, white=1, blue=2;
-        int l=0, m=0, r=nums.size()-1;// pointers to partition
-        while(m<=r){
-            switch(nums[m]){
-                case red:
-                    swap(nums[l], nums[m]);
-                    l++, m++;
-                    break;
-                case white:
-                    m++;
-                    break;
-                case blue:
-                    swap(nums[m], nums[r]);
-                    r--;
+        int low = 0, mid = 0, high = nums.size() - 1;
+
+        while(mid <=  high){
+            if(nums[mid] == 0){
+                swap(nums[mid], nums[low]);
+                    low++;
+                    mid++;
+            }
+            else if(nums[mid] == 1){
+                mid++;
+            }
+            else{
+                swap(nums[mid], nums[high]);
+                high--;
             }
         }
     }
