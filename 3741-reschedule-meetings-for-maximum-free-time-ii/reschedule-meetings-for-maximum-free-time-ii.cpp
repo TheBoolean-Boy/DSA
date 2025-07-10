@@ -13,7 +13,7 @@ public:
         }
         const int end=(i==0)?0:endTime[i-1];
         const int jump=startTime[i+1]-end;
-    //    cout<<"pass="<<pass<<" busy="<<busy<<" jump="<<jump<<" shift="<<jump-busy<<endl;
+    //  cout<<"pass="<<pass<<" busy="<<busy<<" jump="<<jump<<" shift="<<jump-busy<<endl;
         if (pass) return jump;
         return jump-busy; // shift 
     }
