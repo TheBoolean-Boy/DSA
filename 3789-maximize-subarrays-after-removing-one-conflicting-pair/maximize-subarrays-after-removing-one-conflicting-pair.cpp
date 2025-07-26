@@ -5,12 +5,17 @@ class Solution {
 public:
     long long maxSubarrays(int n, std::vector<std::vector<int>>& conflictingPairs) {
         std::vector<std::vector<int>> right(n + 1);
+
         for (const auto& pair : conflictingPairs) {
+
             right[std::max(pair[0], pair[1])].push_back(std::min(pair[0], pair[1]));
         }
 
         long long ans = 0;
+
+
         std::vector<long long> left = {0, 0};
+
         std::vector<long long> bonus(n + 1, 0);
 
         for (int r = 1; r <= n; ++r) {
